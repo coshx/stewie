@@ -1,3 +1,3 @@
 # Rails
 
-**For Ruby, please check [this guide](Ruby).**
+**For Ruby, please check [this guide](Ruby.md).**
