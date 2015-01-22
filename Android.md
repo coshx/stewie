@@ -145,7 +145,7 @@ PictureInsightFragment ~> style_fragment_picture_insight.xml
 Style should follow this skeleton:
 
 ```xml
-<style name="MyStyle parent="MyParentStyle">
+<style name="MyStyle" parent="MyParentStyle">
     <!-- Firstly layout args (size, position, orientation, gravity etc.) -->
     <item name="android:layout_width">match_parent</item>
     <item name="android:orientation">vertical</item>
