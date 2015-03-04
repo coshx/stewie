@@ -20,7 +20,7 @@ class MySuperbClass {
 
 ### Indentation
 
-Standard indentation should be **4 soft spaces**. When a carriage return is needed, keep same indentation.
+Standard indentation should be **4 spaces (no tabs)**. When a carriage return is needed, keep same indentation.
 
 ```java
 class AnotherAmazingClass {
@@ -45,7 +45,7 @@ Prefer `sortUsersByNameAsc` to `getUsers`.
 
 ### Case
 
-In Java world, methods and vars should use **camel case**: `myFantasticMethod` . Class should be **pascal case**: `FriendlyClass`.
+In Java world, methods and vars should use **camel case**: `myFantasticMethod` . Class should be **pascal cased**: `FriendlyClass`.
 
 Besides, it is a good practice to prefix private and protected methods and fields **by an underscore**. In no time at all, you can easily spot the access of your field/method.
 
@@ -83,6 +83,10 @@ for (int i = 0; i < size; i++) {
     // ...
 }
 
+// OR
+for (int i = 0, size = list.size(); i < size; i++) {
+}
+
 // DO NOT
 
 for (int i = 0; i < list.size(); i++) {
@@ -94,7 +98,7 @@ Do not assume size access is constant.
 
 ### Variable declarations
 
-Variables should be declared at the top of each block. This process increases performances for it avoids calling memory allocator and garbage collector again.
+Variables should be declared at the top of each block. This process may increase performances for it avoids calling memory allocator and garbage collector again. However, it is a good practice for it keeps your code ordered. 
 
 ```java
 public void myMethod() {
@@ -154,20 +158,21 @@ Then, name depends on your test tool (especially its output format). You can use
 
 ### Variable initialization
 
-Prefer declaring variable first, then initializing them. It makes your code easier to read.
+Variable initialization should be done as soon var is declared except if value needs any computation.
 
 ```java
-public void myMethod() {
-    int i, j;
-    boolean isOver;
-    String s;
-    
-    isOver = false;
-    s = "foobar";
-    
-    // ...
-}
-```
+// DO NOT
+int i;
+Foo f = super.getContext().getDefault().getFoo(), g;
+
+i = 0;
+
+// DO
+int i = 0;
+Foo f, g;
+
+f = super.getContext().getDefault().getFoo();
+``` 
 
 ### Chained calls
 
@@ -182,11 +187,13 @@ myUser
 
 ### Break endless lines
 
-Avoid long code lines. Longer a line is, more painful to read it is. You should limit you to 80-100 chars.
+Avoid long code lines. Longer a line is, more painful to read it is. You should limit your line to 90 chars.
 
 ```java
-// DO
+// DO NOT
+MyEngine.run(firstArg, secondArg, thirdArg, fourthArg, /** ... */);
 
+// DO
 MyEngine.run(
     firstArg,
     secondArg,
@@ -195,7 +202,4 @@ MyEngine.run(
     // ...
 );
 
-// DO NOT
-
-MyEngine.run(firstArg, secondArg, thirdArg, fourthArg, /** ... */);
 ```
