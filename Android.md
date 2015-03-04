@@ -8,10 +8,10 @@
 
 You should separate activities from adapters. Ditto for fragments. 
 
-```
+```sh
 views/
   |-- activities/
-  |-- fragments/     // Gathers dialogs and fragments
+  |-- fragments/     # Gathers dialogs and fragments
   |-- adapters/
 ```
 
@@ -19,7 +19,7 @@ views/
 
 #### 65k limit
 
-Android apps must have less than 65K methods, including libraries. Then, you should be attentive to import only methods/classes you need (even if there is a work around to overcome this problem).
+Android apps must have less than 65K methods, including libraries. Then, you should be attentive to import only methods/classes you need (even if there is a work around for this trouble).
 
 Remove useless code. Proguard can help you for that.
 
@@ -29,13 +29,13 @@ Even if it is usually a good pattern to follow, you should avoid having getters 
 
 #### Do not block UI thread (aka main thread)
 
-Anytime, you should steer clear of blocking UI thread. Indeed, when you are performing long operations, such as pulling data from remote server or engining random stuff in business part, you are freezing your app. User cannot perform interactions anymore.
+Anytime, you should steer clear of blocking UI thread. Indeed, when you have long operations to perform, such as pulling data from remote server or engining random stuff in business part, you are freezing your app. User cannot perform interactions anymore.
 
 For instance, avoid to set adapters, pull data from database or server on main thread. To get round this problem, use threads. In particular, Android provides to developers the `AsyncTask` interface. 
 
 #### Avoid Java hashes
 
-Android development implies to be careful about performances and memory management. Instead of using Java hashes (such as `HashMap`), you should use built-in ones, as `SparseArray`. They are designed for being reverent of Android devices. 
+Android development implies to be careful about performances and memory management. Instead of using Java hashes (such as `HashMap`), you should use built-in ones, like `SparseArray`. They are designed for being reverent of Android devices. 
 
 #### Manages your memory
 
@@ -43,21 +43,21 @@ Memory is an important resource and quite limited. You should be attentive to fr
 
 #### Do not use enums
 
-Enums are almost 3x eager in memory than static fields. You should use those ones instead, even if for integers.
+Enums are almost 3x eager in memory than static constants. You should use them instead, even if for integers (cf. internal implementation of `Intent`).
 
 #### Use static methods (if possible)
 
 Static calls may be 3x faster than classic ones. Use them as much as possible, especially when you need no fields or context (e.g. helpers).
 
-#### Use `float` instead of `double`
+#### Prefer integers than floats
 
-Double uses 2x more space than float. What are you still using them?
+Floating point is about 2x slower than integer on Android-powered devices. However, there is no difference between `float` and `double`.
 
 ## Resources
 
 ### Indentation
 
-Indentation should be **4 soft spaces**.
+Indentation should be **4 spaces (no tabs)**.
 
 ```xml
 <LinearLayout
@@ -168,15 +168,15 @@ Style should follow this skeleton:
 Color file should only define a palette and not being specific to your business.
 
 ```xml
-<!-- DO -->
-<color name="hippie_blue">#5696BC</color>
-<color name="picton_blue">#52befb</color>
-<color name="orange">#ff9900</color>
-
 <!-- DO NOT -->
 <color name="back_button_color">#5696BC</color>
 <color name="main_background">#52befb</color>
 <color name="font_color">#ff9900</color>
+
+<!-- DO -->
+<color name="hippie_blue">#5696BC</color>
+<color name="picton_blue">#52befb</color>
+<color name="orange">#ff9900</color>
 ```
 
 ### Dimensions
@@ -184,22 +184,22 @@ Color file should only define a palette and not being specific to your business.
 Like colors, dimensions should not be relative to your business.
 
 ```xml
-<!-- DO -->
-<dimen name="small_avatar">50dp</dimen>
-<dimen name="medium_avatar">100dp</dimen>
-<dimen name="large_avatar">150dp</dimen>
-
 <!-- DO NOT -->
 <dimen name="comment_avatar">50dp</dimen>
 <dimen name="landing_avatar">100dp</dimen>
 <dimen name="profile_avatar">150dp</dimen>
+
+<!-- DO -->
+<dimen name="small_avatar">50dp</dimen>
+<dimen name="medium_avatar">100dp</dimen>
+<dimen name="large_avatar">150dp</dimen>
 ```
 
 ### Performances
 
 #### Limit hierarchy
 
-Avoid complex hierarchy. More complex it is, slower rendering engine will be. If you have too many nested layouts, you may have a `StackOverflowException`. Refactors your layout frequently to improve your performances. 
+Avoid complex hierarchy. More complex it is, slower rendering engine will be. If you have too many nested layouts, you might have a `StackOverflowException`. Refactors your layout frequently to improve your performances. 
 
 #### Reuse components
 
